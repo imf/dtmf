@@ -8,13 +8,19 @@ class Square extends React.Component {
         var audioCtx = new(window.AudioContext || window.webkitAudioContext)()
         console.log('Playing tones: ' + tones)
         var oscillator = audioCtx.createOscillator();
+        var oscillator2 = audioCtx.createOscillator();
         oscillator.type = 'square';
+        oscillator2.type = 'square';
         oscillator.frequency.value = tones[0]; // value in hertz
+        oscillator2.frequency.value = tones[1]; // value in hertz
         oscillator.connect(audioCtx.destination);
+        oscillator2.connect(audioCtx.destination);
         oscillator.start();
+        oscillator2.start();
         setTimeout(
             function() {
-              oscillator.stop()
+                oscillator.stop()
+                oscillator2.stop()
             }, duration);
         
     }
