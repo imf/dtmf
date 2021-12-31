@@ -8,8 +8,8 @@ class Square extends React.Component {
         console.log('Playing tones: ' + tones)
         this.oscillator = this.audioCtx.createOscillator()
         this.oscillator2 = this.audioCtx.createOscillator()
-        this.oscillator.type = 'square'
-        this.oscillator2.type = 'square'
+        this.oscillator.type = 'sine'
+        this.oscillator2.type = 'sine'
         this.oscillator.frequency.value = tones[0] // value in hertz
         this.oscillator2.frequency.value = tones[1] // value in hertz
         this.oscillator.connect(this.audioCtx.destination)
