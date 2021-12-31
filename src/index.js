@@ -4,7 +4,19 @@ import './index.css';
 
 class Square extends React.Component {
     playTones(tones) {
+        var duration = 100
+        var audioCtx = new(window.AudioContext || window.webkitAudioContext)()
         console.log('Playing tones: ' + tones)
+        var oscillator = audioCtx.createOscillator();
+        oscillator.type = 'square';
+        oscillator.frequency.value = tones[0]; // value in hertz
+        oscillator.connect(audioCtx.destination);
+        oscillator.start();
+        setTimeout(
+            function() {
+              oscillator.stop()
+            }, duration);
+        
     }
 
     render() {
