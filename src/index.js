@@ -41,12 +41,9 @@ class Square extends React.Component {
       return <Square value={i}/>;
     }
   
-    render() {
-      const status = 'Initialized.';
-  
+    render() {  
       return (
         <div>
-          <div className="status">{status}</div>
           <div className="key-row">
             {this.renderSquare({key: 1, letters: '', tones: [697, 1209]})}
             {this.renderSquare({key: 2, letters: 'A B C', tones: [697, 1336]})}
