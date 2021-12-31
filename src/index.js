@@ -3,9 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 class Square extends React.Component {
+    playTones(tones) {
+        console.log('Playing tones: ' + tones)
+    }
+
     render() {
       return (
-        <button className="square">
+        <button className="square" onClick={() => this.playTones(this.props.value.tones)}>
             <div className="letters">{this.props.value.letters}</div>
             <div>{this.props.value.key}</div>
           
