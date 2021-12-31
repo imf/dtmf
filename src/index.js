@@ -5,29 +5,35 @@ import './index.css';
 class Square extends React.Component {
     playTones(tones) {
         var duration = 100
-        var audioCtx = new(window.AudioContext || window.webkitAudioContext)()
+        this.audioCtx = new(window.AudioContext || window.webkitAudioContext)()
         console.log('Playing tones: ' + tones)
-        var oscillator = audioCtx.createOscillator();
-        var oscillator2 = audioCtx.createOscillator();
-        oscillator.type = 'square';
-        oscillator2.type = 'square';
-        oscillator.frequency.value = tones[0]; // value in hertz
-        oscillator2.frequency.value = tones[1]; // value in hertz
-        oscillator.connect(audioCtx.destination);
-        oscillator2.connect(audioCtx.destination);
-        oscillator.start();
-        oscillator2.start();
-        setTimeout(
-            function() {
-                oscillator.stop()
-                oscillator2.stop()
-            }, duration);
+        this.oscillator = this.audioCtx.createOscillator();
+        this.oscillator2 = this.audioCtx.createOscillator();
+        this.oscillator.type = 'square';
+        this.oscillator2.type = 'square';
+        this.oscillator.frequency.value = tones[0]; // value in hertz
+        this.oscillator2.frequency.value = tones[1]; // value in hertz
+        this.oscillator.connect(this.audioCtx.destination);
+        this.oscillator2.connect(this.audioCtx.destination);
+        this.oscillator.start();
+        this.oscillator2.start();
+        // setTimeout(
+        //     function() {
+        //         this.oscillator.stop()
+        //         this.oscillator2.stop()
+        //     }, duration);
         
     }
 
+    stopTones() {
+        console.log("Stopping tones.")
+        this.oscillator.stop()
+        this.oscillator2.stop()
+}
+
     render() {
       return (
-        <button className="square" onClick={() => this.playTones(this.props.value.tones)}>
+        <button className="square" onMouseDown={() => this.playTones(this.props.value.tones)} onMouseUp={() => this.stopTones()} onMouseLeave={() => this.stopTones()}>
             <div className="letters">{this.props.value.letters}</div>
             <div>{this.props.value.key}</div>
           
